@@ -231,12 +231,12 @@ Class encapsulate main operation with transactions.
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">var acc1 = Account.NewAccount();
-var acc2 = Account.NewAccount();
+    <pre class="sunlight-highlight-javascript">var acc = Account.NewAccount();
+
 var tx = new Transaction({
    chainID: 1,
-   from: acc1,
-   to: acc2,
+   from: acc,
+   to: &quot;n1SAeQRVn33bamxN4ehWUT7JGdxipwn8b17&quot;,
    value: 10,
    nonce: 12,
    gasPrice: 1000000,
@@ -327,13 +327,6 @@ var tx = new Transaction({
 	
 
 	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li>{TransactionInit} - Transaction Initialization.</li>
-			</ul>
-	</dd>
-	
 
 	
 </dl>
@@ -354,7 +347,7 @@ var tx = new Transaction({
     
             
 <div class="param-desc">
-    - hash of Transaction.
+    hash of Transaction.
 </div>
 
 
@@ -378,12 +371,12 @@ var tx = new Transaction({
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">var acc1 = Account.NewAccount();
-var acc2 = Account.NewAccount();
+    <pre class="sunlight-highlight-javascript">var acc = Account.NewAccount();
+
 var tx = new Transaction({
    chainID: 1,
-   from: acc1,
-   to: acc2,
+   from: acc,
+   to: &quot;n1SAeQRVn33bamxN4ehWUT7JGdxipwn8b17&quot;,
    value: 10,
    nonce: 12,
    gasPrice: 1000000,
@@ -474,12 +467,12 @@ var txHash = tx.hashTransaction();
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">var acc1 = Account.NewAccount();
-var acc2 = Account.NewAccount();
+    <pre class="sunlight-highlight-javascript">var acc = Account.NewAccount();
+
 var tx = new Transaction({
    chainID: 1,
-   from: acc1,
-   to: acc2,
+   from: acc,
+   to: &quot;n1SAeQRVn33bamxN4ehWUT7JGdxipwn8b17&quot;,
    value: 10,
    nonce: 12,
    gasPrice: 1000000,
@@ -495,7 +488,7 @@ tx.signTransaction();</pre>
             
 <hr>
 <dt>
-    <h4 class="name" id="toString"><span class="type-signature"></span>toString()</h4>
+    <h4 class="name" id="toPlainObject"><span class="type-signature"></span>toPlainObject()</h4>
     
     
 </dt>
@@ -503,7 +496,7 @@ tx.signTransaction();</pre>
 
     
     <div class="description">
-        Convert transaction to JSON string.
+        Conver transaction data to plain JavaScript object.
     </div>
     
 
@@ -569,7 +562,127 @@ tx.signTransaction();</pre>
     
             
 <div class="param-desc">
-    - JSON stringify of transaction data.
+    Plain JavaScript object with Transaction fields.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var acc = Account.NewAccount();
+var tx = new Transaction({
+   chainID: 1,
+   from: acc,
+   to: &quot;n1SAeQRVn33bamxN4ehWUT7JGdxipwn8b17&quot;,
+   value: 10,
+   nonce: 12,
+   gasPrice: 1000000,
+   gasLimit: 2000000
+});
+txData = tx.toPlainObject();
+// {}</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Convert transaction to JSON string.
+</br><b>Note:</b> Transaction should be <a href="Transaction.html#signTransaction">sign</a> before converting.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    JSON stringify of transaction data.
 </div>
 
 
@@ -593,17 +706,18 @@ tx.signTransaction();</pre>
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">var acc1 = Account.NewAccount();
-var acc2 = Account.NewAccount();
+    <pre class="sunlight-highlight-javascript">var acc = Account.NewAccount();
+
 var tx = new Transaction({
    chainID: 1,
-   from: acc1,
-   to: acc2,
+   from: acc,
+   to: &quot;n1SAeQRVn33bamxN4ehWUT7JGdxipwn8b17&quot;,
    value: 10,
    nonce: 12,
    gasPrice: 1000000,
    gasLimit: 2000000
 });
+tx.signTransaction();
 var txHash = tx.toString();
 // &quot;{&quot;chainID&quot;:1001,&quot;from&quot;:&quot;n1QZMXSZtW7BUerroSms4axNfyBGyFGkrh5&quot;,&quot;to&quot;:&quot;n1SAeQRVn33bamxN4ehWUT7JGdxipwn8b17&quot;,&quot;value&quot;:&quot;1000000000000000000&quot;,&quot;nonce&quot;:1,&quot;timestamp&quot;:1521905294,&quot;data&quot;:{&quot;payloadType&quot;:&quot;binary&quot;,&quot;payload&quot;:null},&quot;gasPrice&quot;:&quot;1000000&quot;,&quot;gasLimit&quot;:&quot;20000&quot;,&quot;hash&quot;:&quot;f52668b853dd476fd309f21b22ade6bb468262f55402965c3460175b10cb2f20&quot;,&quot;alg&quot;:1,&quot;sign&quot;:&quot;cf30d5f61e67bbeb73bb9724ba5ba3744dcbc995521c62f9b5f43efabd9b82f10aaadf19a9cdb05f039d8bf074849ef4b508905bcdea76ae57e464e79c958fa900&quot;}&quot;</pre>
 
@@ -624,6 +738,7 @@ var txHash = tx.toString();
     
     <div class="description">
         Convert transaction to Protobuf format.
+</br><b>Note:</b> Transaction should be <a href="Transaction.html#signTransaction">sign</a> before converting.
     </div>
     
 
@@ -689,7 +804,7 @@ var txHash = tx.toString();
     
             
 <div class="param-desc">
-    - Transaction data in Protobuf format
+    Transaction data in Protobuf format
 </div>
 
 
@@ -713,17 +828,18 @@ var txHash = tx.toString();
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">var acc1 = Account.NewAccount();
-var acc2 = Account.NewAccount();
+    <pre class="sunlight-highlight-javascript">var acc = Account.NewAccount();
+
 var tx = new Transaction({
    chainID: 1,
-   from: acc1,
-   to: acc2,
+   from: acc,
+   to: &quot;n1SAeQRVn33bamxN4ehWUT7JGdxipwn8b17&quot;,
    value: 10,
    nonce: 12,
    gasPrice: 1000000,
    gasLimit: 2000000
 });
+tx.signTransaction();
 var txHash = tx.toProto();
 // Uint8Array(127)</pre>
 
@@ -744,6 +860,7 @@ var txHash = tx.toProto();
     
     <div class="description">
         Convert transaction to Protobuf hash string.
+</br><b>Note:</b> Transaction should be <a href="Transaction.html#signTransaction">sign</a> before converting.
     </div>
     
 
@@ -809,7 +926,7 @@ var txHash = tx.toProto();
     
             
 <div class="param-desc">
-    - Transaction string.
+    Transaction string.
 </div>
 
 
@@ -833,17 +950,18 @@ var txHash = tx.toProto();
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">var acc1 = Account.NewAccount();
-var acc2 = Account.NewAccount();
+    <pre class="sunlight-highlight-javascript">var acc = Account.NewAccount();
+
 var tx = new Transaction({
    chainID: 1,
-   from: acc1,
-   to: acc2,
+   from: acc,
+   to: &quot;n1SAeQRVn33bamxN4ehWUT7JGdxipwn8b17&quot;,
    value: 10,
    nonce: 12,
    gasPrice: 1000000,
    gasLimit: 2000000
 });
+tx.signTransaction();
 var txHash = tx.toProtoString();
 // &quot;EhjZTY/gKLhWVVMZ+xoY9GiHOHJcxhc4uxkaGNlNj+AouFZVUxn7Ghj0aIc4clzGFzi7GSIQAAAAAAAAAAAN4Lazp2QAACgBMPCz6tUFOggKBmJpbmFyeUDpB0oQAAAAAAAAAAAAAAAAAA9CQFIQAAAAAAAAAAAAAAAAAABOIA==&quot;</pre>
 
@@ -985,7 +1103,7 @@ var txHash = tx.toProtoString();
     
             
 <div class="param-desc">
-    - Restored transaction.
+    Restored transaction.
 </div>
 
 
@@ -1009,12 +1127,12 @@ var txHash = tx.toProtoString();
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">var acc1 = Account.NewAccount();
-var acc2 = Account.NewAccount();
+    <pre class="sunlight-highlight-javascript">var acc = Account.NewAccount();
+
 var tx = new Transaction({
    chainID: 1,
-   from: acc1,
-   to: acc2,
+   from: acc,
+   to: &quot;n1SAeQRVn33bamxN4ehWUT7JGdxipwn8b17&quot;,
    value: 10,
    nonce: 12,
    gasPrice: 1000000,
@@ -1081,7 +1199,7 @@ var tx = tx.fromProto(&quot;EhjZTY/gKLhWVVMZ+xoY9GiHOHJcxhc4uxkaGNlNj+AouFZVUxn7
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-04-02T03:22:40+03:00
+		on 2018-04-03T01:36:36+03:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
